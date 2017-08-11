@@ -4,7 +4,7 @@
 #
 Name     : R-shiny
 Version  : 1.0.3
-Release  : 14
+Release  : 15
 URL      : https://cran.r-project.org/src/contrib/shiny_1.0.3.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/shiny_1.0.3.tar.gz
 Summary  : Web Application Framework for R
@@ -15,7 +15,6 @@ Requires: R-ggplot2
 Requires: R-htmltools
 Requires: R-httpuv
 Requires: R-jsonlite
-Requires: R-mime
 Requires: R-sourcetools
 Requires: R-xtable
 BuildRequires : R-Cairo
@@ -23,14 +22,14 @@ BuildRequires : R-ggplot2
 BuildRequires : R-htmltools
 BuildRequires : R-httpuv
 BuildRequires : R-jsonlite
-BuildRequires : R-mime
 BuildRequires : R-sourcetools
 BuildRequires : R-xtable
 BuildRequires : clr-R-helpers
 
 %description
-This a full jQuery UI build, downloaded from:
-https://jqueryui.com/resources/download/jquery-ui-1.12.1.zip
+applications with R. Automatic "reactive" binding between inputs and
+    outputs and extensive prebuilt widgets make it possible to build
+    beautiful, responsive, and powerful applications with minimal effort.
 
 %prep
 %setup -q -c -n shiny
@@ -40,11 +39,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1493240117
+export SOURCE_DATE_EPOCH=1502421124
 
 %install
 rm -rf %{buildroot}
-export SOURCE_DATE_EPOCH=1493240117
+export SOURCE_DATE_EPOCH=1502421124
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -54,7 +53,19 @@ export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export LDFLAGS="$LDFLAGS  -Wl,-z -Wl,relro"
 mkdir -p %{buildroot}/usr/lib64/R/library
+
+mkdir -p ~/.R
+mkdir -p ~/.stash
+echo "CFLAGS = $CFLAGS -march=haswell -ftree-vectorize " > ~/.R/Makevars
+echo "FFLAGS = $FFLAGS -march=haswell -ftree-vectorize " >> ~/.R/Makevars
+echo "CXXFLAGS = $CXXFLAGS -march=haswell -ftree-vectorize " >> ~/.R/Makevars
 R CMD INSTALL --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} --build  -l %{buildroot}/usr/lib64/R/library shiny
+for i in `find %{buildroot}/usr/lib64/R/ -name "*.so"`; do mv $i $i.avx2 ; mv $i.avx2 ~/.stash/; done
+echo "CFLAGS = $CFLAGS -ftree-vectorize " > ~/.R/Makevars
+echo "FFLAGS = $FFLAGS -ftree-vectorize " >> ~/.R/Makevars
+echo "CXXFLAGS = $CXXFLAGS -ftree-vectorize " >> ~/.R/Makevars
+R CMD INSTALL --preclean --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} --build  -l %{buildroot}/usr/lib64/R/library shiny
+cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 %{__rm} -rf %{buildroot}%{_datadir}/R/library/R.css
 %check
 export LANG=C
@@ -63,6 +74,7 @@ export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
 R CMD check --no-manual --no-examples --no-codoc -l %{buildroot}/usr/lib64/R/library shiny
+cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 
 
 %files
