@@ -4,7 +4,7 @@
 #
 Name     : R-shiny
 Version  : 1.2.0
-Release  : 33
+Release  : 34
 URL      : https://cran.r-project.org/src/contrib/shiny_1.2.0.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/shiny_1.2.0.tar.gz
 Summary  : Web Application Framework for R
