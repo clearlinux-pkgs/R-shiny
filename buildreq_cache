@@ -1,9 +1,11 @@
 1.2.0
 R-Cairo
+R-cli
 R-htmltools
 R-httpuv
 R-jsonlite
 R-promises
 R-rlang
 R-sourcetools
+R-withr
 R-xtable

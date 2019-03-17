@@ -4,34 +4,30 @@
 #
 Name     : R-shiny
 Version  : 1.2.0
-Release  : 36
+Release  : 37
 URL      : https://cran.r-project.org/src/contrib/shiny_1.2.0.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/shiny_1.2.0.tar.gz
 Summary  : Web Application Framework for R
 Group    : Development/Tools
 License  : BSD-3-Clause GPL-3.0 MIT
-Requires: R-Cairo
-Requires: R-htmltools
-Requires: R-httpuv
-Requires: R-jsonlite
-Requires: R-promises
-Requires: R-rlang
-Requires: R-sourcetools
-Requires: R-xtable
+Requires: R-cli
+Requires: R-withr
 BuildRequires : R-Cairo
+BuildRequires : R-cli
 BuildRequires : R-htmltools
 BuildRequires : R-httpuv
 BuildRequires : R-jsonlite
 BuildRequires : R-promises
 BuildRequires : R-rlang
 BuildRequires : R-sourcetools
+BuildRequires : R-withr
 BuildRequires : R-xtable
 BuildRequires : buildreq-R
 
 %description
-applications with R. Automatic "reactive" binding between inputs and
-    outputs and extensive prebuilt widgets make it possible to build
-    beautiful, responsive, and powerful applications with minimal effort.
+This example demonstrates the following concepts:
+- **Global variables**: The `mpgData` variable is declared outside of the `ui` and `server` function definitions. This makes it available anywhere inside `app.R`. The code in `app.R` outside of `ui` and `server` function definitions is only run once when the app starts up, so it can't contain user input.
+- **Reactive expressions**: `formulaText` is a reactive expression. Note how it re-evaluates when the Variable field is changed, but not when the Show Outliers box is unchecked.
 
 %prep
 %setup -q -c -n shiny
@@ -41,10 +37,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1541258677
+export SOURCE_DATE_EPOCH=1552831791
 
 %install
-export SOURCE_DATE_EPOCH=1541258677
+export SOURCE_DATE_EPOCH=1552831791
 rm -rf %{buildroot}
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -80,8 +76,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
-R CMD check --no-manual --no-examples --no-codoc -l %{buildroot}/usr/lib64/R/library shiny|| : 
-cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
+R CMD check --no-manual --no-examples --no-codoc  shiny || :
 
 
 %files
@@ -143,6 +138,36 @@ cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 /usr/lib64/R/library/shiny/html/R.css
 /usr/lib64/R/library/shiny/staticdocs/index.r
 /usr/lib64/R/library/shiny/template/default.html
+/usr/lib64/R/library/shiny/tests/test-all.R
+/usr/lib64/R/library/shiny/tests/test-encoding/01-symbols/app.R
+/usr/lib64/R/library/shiny/tests/test-encoding/02-backslash/server.R
+/usr/lib64/R/library/shiny/tests/test-encoding/02-backslash/ui.R
+/usr/lib64/R/library/shiny/tests/test-encoding/test-all.R
+/usr/lib64/R/library/shiny/tests/testthat/helper.R
+/usr/lib64/R/library/shiny/tests/testthat/test-bookmarking.R
+/usr/lib64/R/library/shiny/tests/testthat/test-bootstrap.r
+/usr/lib64/R/library/shiny/tests/testthat/test-cache.R
+/usr/lib64/R/library/shiny/tests/testthat/test-diagnostics.R
+/usr/lib64/R/library/shiny/tests/testthat/test-gc.r
+/usr/lib64/R/library/shiny/tests/testthat/test-get-extension.R
+/usr/lib64/R/library/shiny/tests/testthat/test-input-handler.R
+/usr/lib64/R/library/shiny/tests/testthat/test-js-version.R
+/usr/lib64/R/library/shiny/tests/testthat/test-modules.R
+/usr/lib64/R/library/shiny/tests/testthat/test-options.R
+/usr/lib64/R/library/shiny/tests/testthat/test-plot-coordmap.R
+/usr/lib64/R/library/shiny/tests/testthat/test-reactivity.r
+/usr/lib64/R/library/shiny/tests/testthat/test-stack.R
+/usr/lib64/R/library/shiny/tests/testthat/test-stacks-deep.R
+/usr/lib64/R/library/shiny/tests/testthat/test-stacks-pruning.R
+/usr/lib64/R/library/shiny/tests/testthat/test-stacks.R
+/usr/lib64/R/library/shiny/tests/testthat/test-staticdocs.R
+/usr/lib64/R/library/shiny/tests/testthat/test-stop-app.R
+/usr/lib64/R/library/shiny/tests/testthat/test-text.R
+/usr/lib64/R/library/shiny/tests/testthat/test-timer.R
+/usr/lib64/R/library/shiny/tests/testthat/test-ui.R
+/usr/lib64/R/library/shiny/tests/testthat/test-update-input.R
+/usr/lib64/R/library/shiny/tests/testthat/test-url.R
+/usr/lib64/R/library/shiny/tests/testthat/test-utils.R
 /usr/lib64/R/library/shiny/www-dir/index.html
 /usr/lib64/R/library/shiny/www/reactive-graph.html
 /usr/lib64/R/library/shiny/www/shared/bootstrap/css/bootstrap-theme.css
