@@ -4,19 +4,19 @@
 #
 Name     : R-shiny
 Version  : 1.2.0
-Release  : 37
+Release  : 38
 URL      : https://cran.r-project.org/src/contrib/shiny_1.2.0.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/shiny_1.2.0.tar.gz
 Summary  : Web Application Framework for R
 Group    : Development/Tools
 License  : BSD-3-Clause GPL-3.0 MIT
-Requires: R-cli
-Requires: R-withr
+Requires: R-mime
 BuildRequires : R-Cairo
 BuildRequires : R-cli
 BuildRequires : R-htmltools
 BuildRequires : R-httpuv
 BuildRequires : R-jsonlite
+BuildRequires : R-mime
 BuildRequires : R-promises
 BuildRequires : R-rlang
 BuildRequires : R-sourcetools
@@ -37,10 +37,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1552831791
+export SOURCE_DATE_EPOCH=1552852522
 
 %install
-export SOURCE_DATE_EPOCH=1552831791
+export SOURCE_DATE_EPOCH=1552852522
 rm -rf %{buildroot}
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "

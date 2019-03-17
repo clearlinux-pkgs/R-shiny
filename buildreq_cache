@@ -4,6 +4,7 @@ R-cli
 R-htmltools
 R-httpuv
 R-jsonlite
+R-mime
 R-promises
 R-rlang
 R-sourcetools
