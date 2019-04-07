@@ -1,11 +1,13 @@
-1.2.0
+1.3.0
 R-Cairo
 R-cli
 R-htmltools
 R-httpuv
 R-jsonlite
+R-later
 R-mime
 R-promises
+R-reactlog
 R-rlang
 R-sourcetools
 R-withr
