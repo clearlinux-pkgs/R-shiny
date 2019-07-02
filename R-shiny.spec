@@ -4,36 +4,48 @@
 #
 Name     : R-shiny
 Version  : 1.3.2
-Release  : 45
+Release  : 46
 URL      : https://cran.r-project.org/src/contrib/shiny_1.3.2.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/shiny_1.3.2.tar.gz
 Summary  : Web Application Framework for R
 Group    : Development/Tools
 License  : BSD-3-Clause GPL-3.0 MIT
 Requires: R-Cairo
+Requires: R-R6
+Requires: R-assertthat
+Requires: R-crayon
+Requires: R-digest
 Requires: R-htmltools
 Requires: R-httpuv
 Requires: R-jsonlite
 Requires: R-later
+Requires: R-mime
 Requires: R-promises
 Requires: R-reactlog
+Requires: R-rlang
 Requires: R-sourcetools
 Requires: R-xtable
 BuildRequires : R-Cairo
+BuildRequires : R-R6
+BuildRequires : R-assertthat
+BuildRequires : R-crayon
+BuildRequires : R-digest
 BuildRequires : R-htmltools
 BuildRequires : R-httpuv
 BuildRequires : R-jsonlite
 BuildRequires : R-later
+BuildRequires : R-mime
 BuildRequires : R-promises
 BuildRequires : R-reactlog
+BuildRequires : R-rlang
 BuildRequires : R-sourcetools
 BuildRequires : R-xtable
 BuildRequires : buildreq-R
 
 %description
-This example demonstrates the following concepts:
-- **Global variables**: The `mpgData` variable is declared outside of the `ui` and `server` function definitions. This makes it available anywhere inside `app.R`. The code in `app.R` outside of `ui` and `server` function definitions is only run once when the app starts up, so it can't contain user input.
-- **Reactive expressions**: `formulaText` is a reactive expression. Note how it re-evaluates when the Variable field is changed, but not when the Show Outliers box is unchecked.
+applications with R. Automatic "reactive" binding between inputs and
+    outputs and extensive prebuilt widgets make it possible to build
+    beautiful, responsive, and powerful applications with minimal effort.
 
 %prep
 %setup -q -c -n shiny
@@ -42,13 +54,13 @@ This example demonstrates the following concepts:
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1555954755
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1562089085
 
 %install
-export SOURCE_DATE_EPOCH=1555954755
+export SOURCE_DATE_EPOCH=1562089085
 rm -rf %{buildroot}
-export LANG=C
+export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -77,7 +89,7 @@ R CMD INSTALL --preclean --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} 
 cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 %{__rm} -rf %{buildroot}%{_datadir}/R/library/R.css
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0

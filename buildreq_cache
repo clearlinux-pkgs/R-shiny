@@ -1,14 +1,4 @@
 1.3.2
 R-Cairo
-R-cli
-R-htmltools
-R-httpuv
-R-jsonlite
-R-later
-R-mime
-R-promises
+R-assertthat
 R-reactlog
-R-rlang
-R-sourcetools
-R-withr
-R-xtable
