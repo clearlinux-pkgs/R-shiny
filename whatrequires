@@ -1,7 +1,6 @@
 # This file contains recursive sources that require this package
 R-adegenet
 R-colourpicker
-R-crosstalk
 R-ggvis
 R-htmlwidgets
 R-listviewer
@@ -10,8 +9,6 @@ R-miniUI
 R-modest
 R-questionr
 R-rgl
-R-rmarkdown
-R-rsconnect
 R-shinyBS
 R-shinydashboard
 R-shinyjs
