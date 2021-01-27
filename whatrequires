@@ -1,8 +1,8 @@
 # This file contains recursive sources that require this package
 R-adegenet
 R-colourpicker
+R-crosstalk
 R-ggvis
-R-htmlwidgets
 R-listviewer
 R-manipulateWidget
 R-miniUI
