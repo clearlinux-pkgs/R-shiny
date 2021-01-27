@@ -4,13 +4,15 @@
 #
 Name     : R-shiny
 Version  : 1.6.0
-Release  : 60
+Release  : 61
 URL      : https://cran.r-project.org/src/contrib/shiny_1.6.0.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/shiny_1.6.0.tar.gz
 Summary  : Web Application Framework for R
 Group    : Development/Tools
-License  : Apache-2.0 BSD-3-Clause GPL-3.0 MIT
+License  : BSD-3-Clause GPL-3.0 MIT
 Requires: R-R6
+Requires: R-bslib
+Requires: R-cachem
 Requires: R-commonmark
 Requires: R-crayon
 Requires: R-digest
@@ -64,10 +66,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1611778470
+export SOURCE_DATE_EPOCH=1611779018
 
 %install
-export SOURCE_DATE_EPOCH=1611778470
+export SOURCE_DATE_EPOCH=1611779018
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
