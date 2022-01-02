@@ -3,12 +3,15 @@ R-adegenet
 R-adespatial
 R-colourpicker
 R-crosstalk
+R-dygraphs
 R-ggvis
+R-leaflet
 R-listviewer
 R-manipulateWidget
 R-miniUI
 R-modest
 R-questionr
+R-reactable
 R-shinyBS
 R-shinydashboard
 R-shinyjs
