@@ -4,10 +4,10 @@
 # Using build pattern: R
 #
 Name     : R-shiny
-Version  : 1.7.5
-Release  : 87
-URL      : https://cran.r-project.org/src/contrib/shiny_1.7.5.tar.gz
-Source0  : https://cran.r-project.org/src/contrib/shiny_1.7.5.tar.gz
+Version  : 1.7.5.1
+Release  : 88
+URL      : https://cran.r-project.org/src/contrib/shiny_1.7.5.1.tar.gz
+Source0  : https://cran.r-project.org/src/contrib/shiny_1.7.5.1.tar.gz
 Summary  : Web Application Framework for R
 Group    : Development/Tools
 License  : Apache-2.0 BSD-3-Clause GPL-3.0 MIT
@@ -82,24 +82,24 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1692031878
+export SOURCE_DATE_EPOCH=1697476568
 
 %install
-export SOURCE_DATE_EPOCH=1692031878
+export SOURCE_DATE_EPOCH=1697476568
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/R-shiny
 cp %{_builddir}/shiny/LICENSE %{buildroot}/usr/share/package-licenses/R-shiny/762741cd0200d40737e4ec06835160ac88a0b862 || :
 cp %{_builddir}/shiny/inst/www/shared/highlight/LICENSE %{buildroot}/usr/share/package-licenses/R-shiny/cd25196630fe891662ad77810f0f6dee5bc85ddc || :
 cp %{_builddir}/shiny/inst/www/shared/jqueryui/LICENSE.txt %{buildroot}/usr/share/package-licenses/R-shiny/15df6665dfd90f5cd8fdfde4c0c43051fbb76dae || :
 cp %{_builddir}/shiny/inst/www/shared/showdown/license.txt %{buildroot}/usr/share/package-licenses/R-shiny/da02c977aba236f45145329e97f95f4bdc3387b8 || :
-export LANG=C.UTF-8
-export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FCFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
-export FFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
-export CXXFLAGS="$CXXFLAGS -O3 -flto -fno-semantic-interposition "
-export AR=gcc-ar
-export RANLIB=gcc-ranlib
-export LDFLAGS="$LDFLAGS  -Wl,-z -Wl,relro"
+LANG=C.UTF-8
+CFLAGS="$CLEAR_INTERMEDIATE_CFLAGS -O3 -flto -fno-semantic-interposition "
+FCFLAGS="$CLEAR_INTERMEDIATE_FFLAGS -O3 -flto -fno-semantic-interposition "
+FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS -O3 -flto -fno-semantic-interposition "
+CXXFLAGS="$CLEAR_INTERMEDIATE_CXXFLAGS -O3 -flto -fno-semantic-interposition "
+AR=gcc-ar
+RANLIB=gcc-ranlib
+LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS  -Wl,-z -Wl,relro"
 mkdir -p %{buildroot}/usr/lib64/R/library
 
 mkdir -p ~/.R
